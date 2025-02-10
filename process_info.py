@@ -3,7 +3,7 @@ from psutil import AccessDenied
 
 
 KEY_DIR = "process-info"
-KEY_MODULE_NAME = "main.py"
+KEY_MODULE_NAME = "test_process.py"
 
 
 if __name__ == "__main__":
