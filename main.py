@@ -24,14 +24,21 @@ def run_module(root: str, module: str):
     module_absolute_path = os.path.join(root, module)
     python_venv_path = os.path.join(root, "venv", "Scripts", "python.exe")
     if module.endswith(".py"):
-        subprocess.run([python_venv_path, module_absolute_path], check=False)
+        subprocess.Popen(
+            [python_venv_path, module_absolute_path],
+            creationflags=subprocess.CREATE_NEW_CONSOLE,
+        )
     elif module.endswith(".exe"):
-        subprocess.run([module_absolute_path], check=False)
+        subprocess.Popen(
+            [module_absolute_path],
+            creationflags=subprocess.CREATE_NEW_CONSOLE,
+        )
     else:
         print(f"{module} is not a supported module type")
 
 
 def search_for_process(root_direc: str, module_name: str):
+    print(f"Starting search for {module_name}")
     process_running = False
     for proc in psutil.process_iter():
         try:
@@ -54,6 +61,7 @@ def search_for_process(root_direc: str, module_name: str):
         except AccessDenied as e:
             print(e)
             print("Access denied, skipping...")
+    print("--NOT FOUND--")
     return process_running
 
 
@@ -72,8 +80,8 @@ def main(root_direc: str, module_name: str):
         if search_res:
             print("Process restarted")
             return 1
+        print(f"Restart attempt {i + 1}")
         run_module(root=root_direc, module=module_name)
-        print(f"Retry attempt {i + 1}")
         sleep(RETRY_SLEEP)
     return 2
 
@@ -82,6 +90,8 @@ if __name__ == "__main__":
     py_version = sys.version_info
     if py_version[0] < 3:
         raise Exception(f"Must use Python 3, version detected=={sys.version}")
+    if os.path.isfile(MODULE_PATH) is False:
+        raise FileExistsError(f"{MODULE_PATH} not found")
     module_base = os.path.basename(MODULE_PATH)
     module_path = Path(MODULE_PATH)
     # module_path_abs = module_path.resolve()
