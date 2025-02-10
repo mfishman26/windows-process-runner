@@ -1,0 +1,10 @@
+# Process Info Checker Configuration YAML
+
+module_path: "./test_process.py"
+retry_count: 5
+retry_sleep: 60
+send_alert_emails: true
+alert_recipients:
+  - "recipient1@gmail.com"
+  - "recipient2@gmail.com"
+  - "recipient3@gmail.com"

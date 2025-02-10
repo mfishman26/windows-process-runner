@@ -1,6 +1,7 @@
 # Windows Process Status Utility
 
-**NOTE**: Currently only applicable for *.exe executables and *.py python scripts in Windows.
+**NOTE 1**: Currently only applicable for *.exe executables and *.py python scripts in Windows.
+**NOTE 2**: For python modules, the use of ./venv as the virtual environment is assumed.
 
 This is a small utility for checking if a particular executable or a particular python script is currently running. The intention is to regularly run this as a scheduled task.
 

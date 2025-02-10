@@ -5,3 +5,4 @@ disable=
     missing-module-docstring,
     missing-function-docstring,
     invalid-name,
+    broad-exception-raised,
