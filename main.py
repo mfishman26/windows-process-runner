@@ -67,7 +67,6 @@ def main(root_direc: str, module_name: str):
         if search_res:
             print("Process restarted")
             return 1
-        # TODO: attempt to start process
         run_module(root=root_direc, module=module_name)
         print(f"Retry attempt {i + 1}")
         sleep(RETRY_SLEEP)

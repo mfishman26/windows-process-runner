@@ -36,4 +36,4 @@ def send_alert(module_name: str, to_addrs: list):
 
 
 if __name__ == "__main__":
-    send_alert(TO_ADDR, "test_module.exe")
+    send_alert(TO_ADDR, "test_process.exe")
