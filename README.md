@@ -1,10 +1,12 @@
 # Windows Process Restart Utility
 
+Small utility for checking if an executable or a python script is currently running. The intention is to regularly run this as a scheduled task.
+
 **NOTE 1**: Currently only applicable for *.exe executables and *.py python scripts in Windows.
 
 **NOTE 2**: For python modules, the use of ./venv as a virtual environment is required.
 
-Small utility for checking if an executable or a python script is currently running. The intention is to regularly run this as a scheduled task.
+This utility will check the current process list for the .exe or .py of interest. If it is not found, it will attempt to start the program. After a configurable amount of retries, it will give up and optionally send an email that the program is down and could not be restarted.
 
 ## Build Instructions
 
